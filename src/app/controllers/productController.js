@@ -42,6 +42,17 @@ const createProducts = asyncHandler(async (req, res) => {
   });
 });
 
+const getAllProducts = asyncHandler(async (req, res) => {
+  const products = await ProductServices.getAllProductsFromDB();
+  sendResponse(res, {
+    statusCode: httpStatus.OK,
+    success: true,
+    message: "All Products retrieved successfully",
+    data: products,
+  });
+});
+
 export const ProductControllers = {
   createProducts,
+  getAllProducts,
 };

@@ -10,6 +10,12 @@ const createProductIntoDB = async (req) => {
   }
 };
 
+const getAllProductsFromDB = async () => {
+  const products = await Product.find();
+  return products;
+};
+
 export const ProductServices = {
   createProductIntoDB,
+  getAllProductsFromDB,
 };
