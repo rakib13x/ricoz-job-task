@@ -1,0 +1,22 @@
+import cookieParser from "cookie-parser";
+import dotenv from "dotenv";
+import express from "express";
+
+import connectDB from "./app/config/db.js";
+dotenv.config();
+
+const port = process.env.PORT || 5000;
+
+connectDB();
+
+const app = express();
+
+app.use(express.json());
+app.use(express.urlencoded({ extended: true }));
+app.use(cookieParser());
+
+app.listen(port, () =>
+  console.log(
+    `Server is running in ${process.env.NODE_ENV} mode on port ${port}`
+  )
+);
