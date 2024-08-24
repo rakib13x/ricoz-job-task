@@ -4,6 +4,7 @@ import express from "express";
 import productRoutes from "./app/routes/productRoutes.js";
 
 import connectDB from "./app/config/db.js";
+import { errorHandler, notFound } from "./app/middlewares/errorMiddleware.js";
 dotenv.config();
 
 const port = process.env.PORT || 5000;
@@ -21,6 +22,9 @@ app.use("/api/products", productRoutes);
 app.get("/", (req, res) => {
   res.send("Hello from server.");
 });
+
+app.use(notFound);
+app.use(errorHandler);
 
 app.listen(port, () =>
   console.log(
