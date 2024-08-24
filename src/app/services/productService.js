@@ -23,8 +23,25 @@ const getSingleProductFromDB = async (productId) => {
   return product;
 };
 
+const updateProductInDB = async (productId, updateData) => {
+  const product = await Product.findById(productId);
+
+  if (!product) {
+    throw new Error("Product not found");
+  }
+
+  Object.keys(updateData).forEach((key) => {
+    product[key] = updateData[key];
+  });
+
+  const updatedProduct = await product.save();
+
+  return updatedProduct;
+};
+
 export const ProductServices = {
   createProductIntoDB,
   getAllProductsFromDB,
   getSingleProductFromDB,
+  updateProductInDB,
 };
