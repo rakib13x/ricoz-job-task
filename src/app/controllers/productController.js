@@ -52,7 +52,19 @@ const getAllProducts = asyncHandler(async (req, res) => {
   });
 });
 
+const getSingleProduct = asyncHandler(async (req, res) => {
+  const { id } = req.params;
+  const product = await ProductServices.getSingleProductFromDB(id);
+  sendResponse(res, {
+    statusCode: httpStatus.OK,
+    success: true,
+    message: "Product retrieved successfully",
+    data: product,
+  });
+});
+
 export const ProductControllers = {
   createProducts,
   getAllProducts,
+  getSingleProduct,
 };
