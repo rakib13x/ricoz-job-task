@@ -3,8 +3,8 @@ import dotenv from "dotenv";
 import express from "express";
 import productRoutes from "./app/routes/productRoutes.js";
 
-import connectDB from "./app/config/db.js";
 import { errorHandler, notFound } from "./app/middlewares/errorMiddleware.js";
+import connectDB from "./server.js";
 dotenv.config();
 
 const port = process.env.PORT || 5000;
